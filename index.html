@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Un pequeño universo para ti ❤️</title>
+
+<style>
+
+/* ========================= */
+/* ESTILO GENERAL */
+/* ========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Segoe UI',sans-serif;
+    overflow:hidden;
+    background:linear-gradient(180deg,#0f1021,#1b1b38,#2d1e40);
+    color:white;
+}
+
+/* ========================= */
+/* FONDO ESTRELLAS */
+/* ========================= */
+
+.estrellas{
+    position:fixed;
+    width:100%;
+    height:100%;
+    background-image:
+    radial-gradient(white 1px, transparent 1px);
+    background-size:50px 50px;
+    opacity:0.3;
+    animation:moverEstrellas 120s linear infinite;
+    z-index:-2;
+}
+
+@keyframes moverEstrellas{
+    from{
+        transform:translateY(0);
+    }
+
+    to{
+        transform:translateY(-1000px);
+    }
+}
+
+/* ========================= */
+/* NAVEGACIÓN */
+/* ========================= */
+
+nav{
+    position:fixed;
+    top:0;
+    width:100%;
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    padding:15px;
+    background:rgba(0,0,0,0.3);
+    backdrop-filter:blur(10px);
+    z-index:1000;
+}
+
+nav button{
+    background:#ff7aa2;
+    border:none;
+    padding:10px 18px;
+    border-radius:20px;
+    color:white;
+    cursor:pointer;
+    transition:0.3s;
+    font-size:15px;
+}
+
+nav button:hover{
+    transform:scale(1.1);
+    background:#ff4f87;
+}
+
+/* ========================= */
+/* SECCIONES */
+/* ========================= */
+
+.seccion{
+    display:none;
+    height:100vh;
+    width:100%;
+    padding:100px 20px;
+    overflow:auto;
+    text-align:center;
+}
+
+.activa{
+    display:block;
+    animation:fade 1s;
+}
+
+@keyframes fade{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* ========================= */
+/* TITULOS */
+/* ========================= */
+
+h1{
+    font-size:50px;
+    margin-bottom:20px;
+    animation:latido 2s infinite;
+}
+
+@keyframes latido{
+    0%{transform:scale(1);}
+    50%{transform:scale(1.05);}
+    100%{transform:scale(1);}
+}
+
+p{
+    max-width:700px;
+    margin:auto;
+    font-size:20px;
+    line-height:1.8;
+}
+
+/* ========================= */
+/* CARTA */
+/* ========================= */
+
+.carta{
+    background:rgba(255,255,255,0.1);
+    border:1px solid rgba(255,255,255,0.2);
+    padding:30px;
+    border-radius:25px;
+    backdrop-filter:blur(10px);
+    max-width:800px;
+    margin:auto;
+}
+
+/* ========================= */
+/* GATITO */
+/* ========================= */
+
+.gato{
+    position:absolute;
+    bottom:40px;
+    font-size:35px;
+    animation:caminar 18s linear infinite;
+}
+
+@keyframes caminar{
+    from{
+        left:-10%;
+    }
+
+    to{
+        left:110%;
+    }
+}
+
+/* ========================= */
+/* CONEJO */
+/* ========================= */
+
+.conejo{
+    position:absolute;
+    bottom:100px;
+    left:-10%;
+    font-size:40px;
+    animation:saltar 12s linear infinite;
+}
+
+@keyframes saltar{
+
+    0%{
+        left:-10%;
+        transform:translateY(0);
+    }
+
+    25%{
+        transform:translateY(-30px);
+    }
+
+    50%{
+        transform:translateY(0);
+    }
+
+    75%{
+        transform:translateY(-30px);
+    }
+
+    100%{
+        left:110%;
+        transform:translateY(0);
+    }
+
+}
+
+/* ========================= */
+/* BOTONES */
+/* ========================= */
+
+.boton{
+    margin-top:30px;
+    background:#ff7aa2;
+    border:none;
+    padding:15px 25px;
+    color:white;
+    border-radius:25px;
+    cursor:pointer;
+    transition:0.3s;
+    font-size:16px;
+}
+
+.boton:hover{
+    transform:scale(1.1);
+}
+
+/* ========================= */
+/* MENSAJES SECRETOS */
+/* ========================= */
+
+.mensaje{
+    margin-top:25px;
+    display:none;
+    font-size:24px;
+    color:#ffd6e0;
+}
+
+/* ========================= */
+/* RECUERDOS */
+/* ========================= */
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+    margin-top:40px;
+}
+
+.tarjeta{
+    background:rgba(255,255,255,0.1);
+    padding:20px;
+    border-radius:20px;
+    transition:0.4s;
+}
+
+.tarjeta:hover{
+    transform:translateY(-10px) scale(1.03);
+}
+
+/* ========================= */
+/* CORAZONES FLOTANDO */
+/* ========================= */
+
+.corazon{
+    position:fixed;
+    bottom:-20px;
+    animation:flotar linear infinite;
+    color:#ff7aa2;
+    z-index:-1;
+}
+
+@keyframes flotar{
+
+    from{
+        transform:translateY(0);
+        opacity:1;
+    }
+
+    to{
+        transform:translateY(-120vh);
+        opacity:0;
+    }
+
+}
+
+/* ========================= */
+/* FINAL */
+/* ========================= */
+
+.final{
+    font-size:35px;
+    margin-top:40px;
+    color:#ffd6e0;
+}
+
+</style>
+</head>
+<body>
+
+<div class="estrellas"></div>
+
+<!-- ========================= -->
+<!-- CORAZONES -->
+<!-- ========================= -->
+
+<script>
+
+for(let i=0;i<25;i++){
+
+    let corazon=document.createElement("div");
+
+    corazon.classList.add("corazon");
+
+    corazon.innerHTML="❤️";
+
+    corazon.style.left=Math.random()*100+"vw";
+
+    corazon.style.animationDuration=
+    (5+Math.random()*10)+"s";
+
+    corazon.style.fontSize=
+    (15+Math.random()*30)+"px";
+
+    document.body.appendChild(corazon);
+
+}
+
+</script>
+
+<!-- ========================= -->
+<!-- MENU -->
+<!-- ========================= -->
+
+<nav>
+
+<button onclick="mostrar('inicio')">
+🌙 Inicio
+</button>
+
+<button onclick="mostrar('animales')">
+🐾 Animalitos
+</button>
+
+<button onclick="mostrar('recuerdos')">
+☁️ Recuerdos
+</button>
+
+<button onclick="mostrar('futuro')">
+🌸 Futuro
+</button>
+
+<button onclick="mostrar('final')">
+💖 Final
+</button>
+
+</nav>
+
+<!-- ========================= -->
+<!-- INICIO -->
+<!-- ========================= -->
+
+<section id="inicio" class="seccion activa">
+
+<div class="carta">
+
+<h1>Para ti ❤️</h1>
+
+<p>
+
+Aunque la distancia nos separe,
+quiero que sepas que cada día pienso en ti.
+
+Hice este pequeño universo para que,
+aunque sea por unos minutos,
+sientas todo el cariño que guardo para ti.
+
+Cada rincón tiene algo especial.
+
+Así que...
+explóralo despacito 🌙
+
+</p>
+
+<button class="boton"
+onclick="mostrarMensaje('mensaje1')">
+
+Presióname ✨
+
+</button>
+
+<div id="mensaje1" class="mensaje">
+
+Eres mi pensamiento favorito del día.
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ========================= -->
+<!-- ANIMALES -->
+<!-- ========================= -->
+
+<section id="animales" class="seccion">
+
+<h1>Animalitos para ti 🐾</h1>
+
+<p>
+Porque cualquier mundo bonito necesita
+criaturas adorables viviendo en él.
+</p>
+
+<div class="gato">🐈</div>
+<div class="conejo">🐇</div>
+
+<button class="boton"
+onclick="mostrarMensaje('mensaje2')">
+
+Toca aquí 🐱
+
+</button>
+
+<div id="mensaje2" class="mensaje">
+
+Si pudiera, te abrazaría ahora mismo.
+
+</div>
+
+<br><br>
+
+<button class="boton"
+onclick="mostrarMensaje('mensaje3')">
+
+Otro secreto 🐇
+
+</button>
+
+<div id="mensaje3" class="mensaje">
+
+Gracias por seguir aquí conmigo.
+
+</div>
+
+</section>
+
+<!-- ========================= -->
+<!-- RECUERDOS -->
+<!-- ========================= -->
+
+<section id="recuerdos" class="seccion">
+
+<h1>Nuestros recuerdos ☁️</h1>
+
+<p>
+Cada recuerdo contigo vive aquí.
+</p>
+
+<div class="grid">
+
+<div class="tarjeta">
+<h2>🌸 Primer recuerdo</h2>
+<p>
+Aquí puedes escribir
+cómo se conocieron.
+</p>
+</div>
+
+<div class="tarjeta">
+<h2>🌙 Tu momento favorito</h2>
+<p>
+Aquí puedes poner
+una anécdota bonita.
+</p>
+</div>
+
+<div class="tarjeta">
+<h2>💌 Algo que nunca olvidas</h2>
+<p>
+Escribe algo muy personal.
+Eso será lo que más le llegue.
+</p>
+</div>
+
+</div>
+
+</section>
+
+<!-- ========================= -->
+<!-- FUTURO -->
+<!-- ========================= -->
+
+<section id="futuro" class="seccion">
+
+<h1>Lo que quiero contigo 🌸</h1>
+
+<div class="carta">
+
+<p>
+
+Quiero más noches contigo.
+
+Más llamadas largas.
+
+Más risas tontas.
+
+Más momentos donde el mundo
+se sienta pequeño porque estás tú.
+
+Y algún día,
+cuando ya no exista distancia,
+quiero darte todo esto en persona.
+
+</p>
+
+<button class="boton"
+onclick="mostrarMensaje('mensaje4')">
+
+Último secreto 💖
+
+</button>
+
+<div id="mensaje4" class="mensaje">
+
+Estoy orgulloso de ti.
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ========================= -->
+<!-- FINAL -->
+<!-- ========================= -->
+
+<section id="final" class="seccion">
+
+<h1>El final... por ahora ✨</h1>
+
+<div class="final">
+
+Gracias por existir ❤️
+
+</div>
+
+<br><br>
+
+<p>
+
+Este regalo no es perfecto.
+
+Pero fue hecho pensando en ti,
+detalle por detalle.
+
+Y eso lo convierte
+en algo completamente tuyo.
+
+</p>
+
+<br><br>
+
+<h2>
+🌙
+</h2>
+
+</section>
+
+<!-- ========================= -->
+<!-- AUDIO -->
+<!-- ========================= -->
+
+<audio autoplay loop>
+
+<source src="musica.mp3" type="audio/mpeg">
+
+</audio>
+
+<!-- ========================= -->
+<!-- SCRIPT -->
+<!-- ========================= -->
+
+<script>
+
+function mostrar(id){
+
+    let secciones=
+    document.querySelectorAll(".seccion");
+
+    secciones.forEach(sec=>{
+        sec.classList.remove("activa");
+    });
+
+    document.getElementById(id)
+    .classList.add("activa");
+
+}
+
+function mostrarMensaje(id){
+
+    let mensaje=
+    document.getElementById(id);
+
+    if(mensaje.style.display==="block"){
+
+        mensaje.style.display="none";
+
+    }else{
+
+        mensaje.style.display="block";
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>
