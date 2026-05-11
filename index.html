@@ -9,7 +9,7 @@
 <style>
 
 /* ========================= */
-/* ESTILO GENERAL */
+/* GENERAL */
 /* ========================= */
 
 *{
@@ -26,7 +26,7 @@ body{
 }
 
 /* ========================= */
-/* FONDO ESTRELLAS */
+/* ESTRELLAS */
 /* ========================= */
 
 .estrellas{
@@ -38,7 +38,7 @@ body{
     background-size:50px 50px;
     opacity:0.3;
     animation:moverEstrellas 120s linear infinite;
-    z-index:-2;
+    z-index:-3;
 }
 
 @keyframes moverEstrellas{
@@ -52,7 +52,7 @@ body{
 }
 
 /* ========================= */
-/* NAVEGACIÓN */
+/* NAV */
 /* ========================= */
 
 nav{
@@ -77,6 +77,7 @@ nav button{
     cursor:pointer;
     transition:0.3s;
     font-size:15px;
+    box-shadow:0 0 15px rgba(255,122,162,0.4);
 }
 
 nav button:hover{
@@ -142,72 +143,14 @@ p{
 /* ========================= */
 
 .carta{
-    background:rgba(255,255,255,0.1);
+    background:rgba(255,255,255,0.08);
     border:1px solid rgba(255,255,255,0.2);
     padding:30px;
     border-radius:25px;
-    backdrop-filter:blur(10px);
+    backdrop-filter:blur(12px);
     max-width:800px;
     margin:auto;
-}
-
-/* ========================= */
-/* GATITO */
-/* ========================= */
-
-.gato{
-    position:absolute;
-    bottom:40px;
-    font-size:35px;
-    animation:caminar 18s linear infinite;
-}
-
-@keyframes caminar{
-    from{
-        left:-10%;
-    }
-
-    to{
-        left:110%;
-    }
-}
-
-/* ========================= */
-/* CONEJO */
-/* ========================= */
-
-.conejo{
-    position:absolute;
-    bottom:100px;
-    left:-10%;
-    font-size:40px;
-    animation:saltar 12s linear infinite;
-}
-
-@keyframes saltar{
-
-    0%{
-        left:-10%;
-        transform:translateY(0);
-    }
-
-    25%{
-        transform:translateY(-30px);
-    }
-
-    50%{
-        transform:translateY(0);
-    }
-
-    75%{
-        transform:translateY(-30px);
-    }
-
-    100%{
-        left:110%;
-        transform:translateY(0);
-    }
-
+    box-shadow:0 0 30px rgba(255,255,255,0.05);
 }
 
 /* ========================= */
@@ -224,14 +167,16 @@ p{
     cursor:pointer;
     transition:0.3s;
     font-size:16px;
+    box-shadow:0 0 20px rgba(255,122,162,0.5);
 }
 
 .boton:hover{
     transform:scale(1.1);
+    background:#ff4f87;
 }
 
 /* ========================= */
-/* MENSAJES SECRETOS */
+/* MENSAJES */
 /* ========================= */
 
 .mensaje{
@@ -242,7 +187,7 @@ p{
 }
 
 /* ========================= */
-/* RECUERDOS */
+/* TARJETAS */
 /* ========================= */
 
 .grid{
@@ -257,6 +202,7 @@ p{
     padding:20px;
     border-radius:20px;
     transition:0.4s;
+    backdrop-filter:blur(10px);
 }
 
 .tarjeta:hover{
@@ -264,29 +210,241 @@ p{
 }
 
 /* ========================= */
-/* CORAZONES FLOTANDO */
+/* EMOJIS FLOTANDO */
 /* ========================= */
 
-.corazon{
+.flotante{
     position:fixed;
-    bottom:-20px;
-    animation:flotar linear infinite;
-    color:#ff7aa2;
+    bottom:-50px;
     z-index:-1;
+    animation:subir linear forwards;
+    pointer-events:none;
 }
 
-@keyframes flotar{
+@keyframes subir{
 
     from{
-        transform:translateY(0);
+        transform:translateY(0) rotate(0deg);
         opacity:1;
     }
 
     to{
-        transform:translateY(-120vh);
+        transform:translateY(-120vh) rotate(360deg);
         opacity:0;
     }
 
+}
+
+/* ========================= */
+/* GATO */
+/* ========================= */
+
+.gato-container{
+    position:absolute;
+    bottom:40px;
+    left:-300px;
+    display:none;
+    animation:caminar 12s linear forwards;
+}
+
+@keyframes caminar{
+    from{
+        left:-300px;
+    }
+
+    to{
+        left:110%;
+    }
+}
+
+.gato{
+    position:relative;
+    width:180px;
+    height:170px;
+}
+
+.gato-cara{
+    width:160px;
+    height:150px;
+    background:#ff9f43;
+    border-radius:50%;
+    position:relative;
+    box-shadow:0 0 25px rgba(255,170,80,0.5);
+}
+
+.oreja{
+    position:absolute;
+    width:60px;
+    height:60px;
+    background:#ff9f43;
+    top:-20px;
+    border-radius:10px;
+    transform:rotate(45deg);
+}
+
+.oreja.izq{
+    left:10px;
+}
+
+.oreja.der{
+    right:10px;
+}
+
+.ojo{
+    position:absolute;
+    width:22px;
+    height:30px;
+    background:black;
+    border-radius:50%;
+    top:60px;
+    animation:parpadeo 4s infinite;
+}
+
+.ojo.izq{
+    left:40px;
+}
+
+.ojo.der{
+    right:40px;
+}
+
+@keyframes parpadeo{
+    0%,90%,100%{
+        transform:scaleY(1);
+    }
+
+    95%{
+        transform:scaleY(0.1);
+    }
+}
+
+.brillo{
+    position:absolute;
+    width:8px;
+    height:8px;
+    background:white;
+    border-radius:50%;
+    top:4px;
+    left:4px;
+}
+
+.nariz{
+    position:absolute;
+    width:18px;
+    height:14px;
+    background:pink;
+    border-radius:50%;
+    top:95px;
+    left:50%;
+    transform:translateX(-50%);
+}
+
+.bigote{
+    position:absolute;
+    width:50px;
+    height:2px;
+    background:white;
+}
+
+.bigote1{
+    top:100px;
+    left:-20px;
+}
+
+.bigote2{
+    top:110px;
+    left:-20px;
+}
+
+.bigote3{
+    top:100px;
+    right:-20px;
+}
+
+.bigote4{
+    top:110px;
+    right:-20px;
+}
+
+/* ========================= */
+/* CONEJO */
+/* ========================= */
+
+.conejo-container{
+    position:absolute;
+    bottom:60px;
+    left:-300px;
+    display:none;
+    animation:saltar 10s linear forwards;
+}
+
+@keyframes saltar{
+
+    0%{
+        left:-300px;
+        transform:translateY(0);
+    }
+
+    25%{
+        transform:translateY(-40px);
+    }
+
+    50%{
+        transform:translateY(0);
+    }
+
+    75%{
+        transform:translateY(-40px);
+    }
+
+    100%{
+        left:110%;
+        transform:translateY(0);
+    }
+
+}
+
+.conejo{
+    position:relative;
+    width:170px;
+    height:170px;
+}
+
+.cara-conejo{
+    width:160px;
+    height:150px;
+    background:white;
+    border-radius:50%;
+    position:relative;
+    box-shadow:0 0 25px rgba(255,255,255,0.5);
+}
+
+.oreja-conejo{
+    position:absolute;
+    width:40px;
+    height:100px;
+    background:white;
+    border-radius:50px;
+    top:-70px;
+}
+
+.oreja-conejo::after{
+    content:"";
+    position:absolute;
+    width:18px;
+    height:70px;
+    background:pink;
+    border-radius:50px;
+    top:12px;
+    left:11px;
+}
+
+.oreja-conejo.izq{
+    left:30px;
+}
+
+.oreja-conejo.der{
+    right:30px;
 }
 
 /* ========================= */
@@ -299,6 +457,35 @@ p{
     color:#ffd6e0;
 }
 
+.imagen-final{
+    margin-top:40px;
+    display:flex;
+    justify-content:center;
+}
+
+.imagen-final img{
+    width:320px;
+    border-radius:25px;
+    box-shadow:0 0 40px rgba(255,182,193,0.4);
+    animation:flotarImagen 4s ease-in-out infinite;
+}
+
+@keyframes flotarImagen{
+
+    0%{
+        transform:translateY(0px);
+    }
+
+    50%{
+        transform:translateY(-10px);
+    }
+
+    100%{
+        transform:translateY(0px);
+    }
+
+}
+
 </style>
 </head>
 <body>
@@ -306,30 +493,37 @@ p{
 <div class="estrellas"></div>
 
 <!-- ========================= -->
-<!-- CORAZONES -->
+<!-- EMOJIS CONTINUOS -->
 <!-- ========================= -->
 
 <script>
 
-for(let i=0;i<25;i++){
+setInterval(()=>{
 
-    let corazon=document.createElement("div");
+    let emoji=document.createElement("div");
 
-    corazon.classList.add("corazon");
+    let emojis=["🐱","🐰","💖","✨"];
 
-    corazon.innerHTML="❤️";
+    emoji.innerHTML=
+    emojis[Math.floor(Math.random()*emojis.length)];
 
-    corazon.style.left=Math.random()*100+"vw";
+    emoji.classList.add("flotante");
 
-    corazon.style.animationDuration=
-    (5+Math.random()*10)+"s";
+    emoji.style.left=Math.random()*100+"vw";
 
-    corazon.style.fontSize=
-    (15+Math.random()*30)+"px";
+    emoji.style.fontSize=
+    (20+Math.random()*30)+"px";
 
-    document.body.appendChild(corazon);
+    emoji.style.animationDuration=
+    (3+Math.random()*5)+"s";
 
-}
+    document.body.appendChild(emoji);
+
+    setTimeout(()=>{
+        emoji.remove();
+    },8000);
+
+},180);
 
 </script>
 
@@ -372,19 +566,12 @@ for(let i=0;i<25;i++){
 <h1>Para ti ❤️</h1>
 
 <p>
-
 Aunque la distancia nos separe,
 quiero que sepas que cada día pienso en ti.
 
 Hice este pequeño universo para que,
 aunque sea por unos minutos,
 sientas todo el cariño que guardo para ti.
-
-Cada rincón tiene algo especial.
-
-Así que...
-explóralo despacito 🌙
-
 </p>
 
 <button class="boton"
@@ -395,9 +582,7 @@ Presióname ✨
 </button>
 
 <div id="mensaje1" class="mensaje">
-
 Eres mi pensamiento favorito del día.
-
 </div>
 
 </div>
@@ -417,35 +602,89 @@ Porque cualquier mundo bonito necesita
 criaturas adorables viviendo en él.
 </p>
 
-<div class="gato">🐈</div>
-<div class="conejo">🐇</div>
+<!-- GATO -->
+
+<div id="gatoContainer"
+class="gato-container">
+
+<div class="gato">
+
+<div class="gato-cara">
+
+<div class="oreja izq"></div>
+<div class="oreja der"></div>
+
+<div class="ojo izq">
+<div class="brillo"></div>
+</div>
+
+<div class="ojo der">
+<div class="brillo"></div>
+</div>
+
+<div class="nariz"></div>
+
+<div class="bigote bigote1"></div>
+<div class="bigote bigote2"></div>
+<div class="bigote bigote3"></div>
+<div class="bigote bigote4"></div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- CONEJO -->
+
+<div id="conejoContainer"
+class="conejo-container">
+
+<div class="conejo">
+
+<div class="cara-conejo">
+
+<div class="oreja-conejo izq"></div>
+<div class="oreja-conejo der"></div>
+
+<div class="ojo izq">
+<div class="brillo"></div>
+</div>
+
+<div class="ojo der">
+<div class="brillo"></div>
+</div>
+
+<div class="nariz"></div>
+
+</div>
+
+</div>
+
+</div>
 
 <button class="boton"
-onclick="mostrarMensaje('mensaje2')">
+onclick="mostrarGato()">
 
 Toca aquí 🐱
 
 </button>
 
 <div id="mensaje2" class="mensaje">
-
 Si pudiera, te abrazaría ahora mismo.
-
 </div>
 
 <br><br>
 
 <button class="boton"
-onclick="mostrarMensaje('mensaje3')">
+onclick="mostrarConejo()">
 
 Otro secreto 🐇
 
 </button>
 
 <div id="mensaje3" class="mensaje">
-
 Gracias por seguir aquí conmigo.
-
 </div>
 
 </section>
@@ -467,16 +706,14 @@ Cada recuerdo contigo vive aquí.
 <div class="tarjeta">
 <h2>🌸 Primer recuerdo</h2>
 <p>
-Aquí puedes escribir
-cómo se conocieron.
+Aquí puedes escribir cómo se conocieron.
 </p>
 </div>
 
 <div class="tarjeta">
 <h2>🌙 Tu momento favorito</h2>
 <p>
-Aquí puedes poner
-una anécdota bonita.
+Aquí puedes poner una anécdota bonita.
 </p>
 </div>
 
@@ -484,7 +721,6 @@ una anécdota bonita.
 <h2>💌 Algo que nunca olvidas</h2>
 <p>
 Escribe algo muy personal.
-Eso será lo que más le llegue.
 </p>
 </div>
 
@@ -503,7 +739,6 @@ Eso será lo que más le llegue.
 <div class="carta">
 
 <p>
-
 Quiero más noches contigo.
 
 Más llamadas largas.
@@ -512,11 +747,6 @@ Más risas tontas.
 
 Más momentos donde el mundo
 se sienta pequeño porque estás tú.
-
-Y algún día,
-cuando ya no exista distancia,
-quiero darte todo esto en persona.
-
 </p>
 
 <button class="boton"
@@ -527,9 +757,7 @@ onclick="mostrarMensaje('mensaje4')">
 </button>
 
 <div id="mensaje4" class="mensaje">
-
 Estoy orgulloso de ti.
-
 </div>
 
 </div>
@@ -545,30 +773,24 @@ Estoy orgulloso de ti.
 <h1>El final... por ahora ✨</h1>
 
 <div class="final">
-
 Gracias por existir ❤️
-
 </div>
 
 <br><br>
 
 <p>
-
 Este regalo no es perfecto.
 
 Pero fue hecho pensando en ti,
 detalle por detalle.
-
-Y eso lo convierte
-en algo completamente tuyo.
-
 </p>
 
-<br><br>
+<div class="imagen-final">
 
-<h2>
-🌙
-</h2>
+<img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2"
+alt="Imagen especial">
+
+</div>
 
 </section>
 
@@ -616,6 +838,74 @@ function mostrarMensaje(id){
         mensaje.style.display="block";
 
     }
+
+}
+
+function crearEmoji(simbolo){
+
+    for(let i=0;i<20;i++){
+
+        let emoji=document.createElement("div");
+
+        emoji.classList.add("flotante");
+
+        emoji.innerHTML=simbolo;
+
+        emoji.style.left=Math.random()*100+"vw";
+
+        emoji.style.fontSize=
+        (20+Math.random()*25)+"px";
+
+        emoji.style.animationDuration=
+        (2+Math.random()*4)+"s";
+
+        document.body.appendChild(emoji);
+
+        setTimeout(()=>{
+            emoji.remove();
+        },7000);
+
+    }
+
+}
+
+function mostrarGato(){
+
+    mostrarMensaje("mensaje2");
+
+    let gato=
+    document.getElementById("gatoContainer");
+
+    gato.style.display="block";
+
+    gato.style.animation="none";
+
+    void gato.offsetWidth;
+
+    gato.style.animation=
+    "caminar 12s linear forwards";
+
+    crearEmoji("🐱");
+
+}
+
+function mostrarConejo(){
+
+    mostrarMensaje("mensaje3");
+
+    let conejo=
+    document.getElementById("conejoContainer");
+
+    conejo.style.display="block";
+
+    conejo.style.animation="none";
+
+    void conejo.offsetWidth;
+
+    conejo.style.animation=
+    "saltar 10s linear forwards";
+
+    crearEmoji("🐰");
 
 }
 
